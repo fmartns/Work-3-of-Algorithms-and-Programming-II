@@ -1,3 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Hotel>
+    <Reserva>
+        <Id>1</Id>
+        <Hospede id="5" nome="Ana" sobrenome="Pereira" cpf="478.963.125-99" cep="11040-330" logradouro="Avenida Conselheiro Nébias" num="300" bairro="Boqueirão" cidade="Santos" complemento="Apto 101" email="ana.pereira@example.com" telefone="(13) 3232-6543"/>
+        <Quarto numeroQuarto="106" tipo="Esmeralda" foto="http://hotelresidencialitapema.com.br/wp-content/uploads/2019/01/IMG_3961.jpg" descricao="Quarto Esmeralda: Conforto e elegância se encontram neste espaço exclusivo, com design contemporâneo e amenities de alto padrão." camasSolteiro="2" camasCasal="2" frigobar="true" arCondicionado="true" valor="200" disponivel="true"/>
+        <DataEntrada>02/08/2024</DataEntrada>
+        <DataSaida>05/08/2024</DataSaida>
+        <NumHospedes>2</NumHospedes>
+        <ValorTotal>0.00</ValorTotal>
+        <Pago>false</Pago>
+    </Reserva>
+    <Reserva>
+        <Id>2</Id>
+        <Hospede id="11" nome="Aline" sobrenome="Rocha" cpf="657.890.123-45" cep="01020-000" logradouro="Rua Direita" num="200" bairro="Centro" cidade="São Paulo" complemento="Apto 308" email="aline.rocha@example.com" telefone="(11) 98765-1234"/>
+        <Quarto numeroQuarto="112" tipo="Jade" foto="http://hotelresidencialitapema.com.br/wp-content/uploads/2019/01/IMG_4023.jpg" descricao="Quarto Jade: Um espaço harmonioso e contemporâneo, com design único e amenities que garantem conforto e tranquilidade." camasSolteiro="2" camasCasal="1" frigobar="true" arCondicionado="true" valor="190" disponivel="true"/>
+        <DataEntrada>04/11/2024</DataEntrada>
+        <DataSaida>12/11/2024</DataSaida>
+        <NumHospedes>3</NumHospedes>
+        <ValorTotal>0.00</ValorTotal>
+        <Pago>false</Pago>
+        <DataCheckin>04/11/2024</DataCheckin>
+    </Reserva>
+    <Reserva>
+        <Id>3</Id>
+        <Hospede id="3" nome="João" sobrenome="Oliveira" cpf="315.874.968-00" cep="01414-002" logradouro="Rua Augusta" num="439" bairro="Jardins" cidade="São Paulo" complemento="Apto 32" email="joao.oliveira@example.com" telefone="(11) 91234-5678"/>
+        <Quarto numeroQuarto="106" tipo="Esmeralda" foto="http://hotelresidencialitapema.com.br/wp-content/uploads/2019/01/IMG_3961.jpg" descricao="Quarto Esmeralda: Conforto e elegância se encontram neste espaço exclusivo, com design contemporâneo e amenities de alto padrão." camasSolteiro="2" camasCasal="2" frigobar="true" arCondicionado="true" valor="200" disponivel="true"/>
+        <DataEntrada>23/12/2024</DataEntrada>
+        <DataSaida>02/01/2025</DataSaida>
+        <NumHospedes>5</NumHospedes>
+        <ValorTotal>2200.00</ValorTotal>
+        <Pago>true</Pago>
+        <DataCheckin>23/12/2024</DataCheckin>
+        <DataCheckout>02/01/2025</DataCheckout>
+    </Reserva>
 </Hotel>

@@ -1,3 +1,157 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Hotel>
+    <Hospede>
+        <Id>1</Id>
+        <Nome>Filipe</Nome>
+        <Sobrenome>Martins</Sobrenome>
+        <Cpf>592.993.170-46</Cpf>
+        <Cep>78715-718</Cep>
+        <Logradouro>Rua R</Logradouro>
+        <Numero>748</Numero>
+        <Bairro>Jardim Liberdade</Bairro>
+        <Cidade>Rondonópolis</Cidade>
+        <Complemento>Não tem</Complemento>
+        <Email>osvaldoedsonbernardes@fertau.com.br</Email>
+        <Telefone>(66) 3518-7899</Telefone>
+    </Hospede>
+    <Hospede>
+        <Id>2</Id>
+        <Nome>Mariana</Nome>
+        <Sobrenome>Silva</Sobrenome>
+        <Cpf>721.458.962-34</Cpf>
+        <Cep>01310-300</Cep>
+        <Logradouro>Avenida Paulista</Logradouro>
+        <Numero>1578</Numero>
+        <Bairro>Centro</Bairro>
+        <Cidade>São Paulo</Cidade>
+        <Complemento>Apto 45</Complemento>
+        <Email>mariana.silva@example.com</Email>
+        <Telefone>(11) 99876-5432</Telefone>
+    </Hospede>
+    <Hospede>
+        <Id>3</Id>
+        <Nome>João</Nome>
+        <Sobrenome>Oliveira</Sobrenome>
+        <Cpf>315.874.968-00</Cpf>
+        <Cep>01414-002</Cep>
+        <Logradouro>Rua Augusta</Logradouro>
+        <Numero>439</Numero>
+        <Bairro>Jardins</Bairro>
+        <Cidade>São Paulo</Cidade>
+        <Complemento>Apto 32</Complemento>
+        <Email>joao.oliveira@example.com</Email>
+        <Telefone>(11) 91234-5678</Telefone>
+    </Hospede>
+    <Hospede>
+        <Id>4</Id>
+        <Nome>Lucas</Nome>
+        <Sobrenome>Souza</Sobrenome>
+        <Cpf>231.654.789-11</Cpf>
+        <Cep>30130-012</Cep>
+        <Logradouro>Avenida Afonso Pena</Logradouro>
+        <Numero>2020</Numero>
+        <Bairro>Centro</Bairro>
+        <Cidade>Belo Horizonte</Cidade>
+        <Complemento>Casa</Complemento>
+        <Email>lucas.souza@example.com</Email>
+        <Telefone>(31) 98765-4321</Telefone>
+    </Hospede>
+    <Hospede>
+        <Id>5</Id>
+        <Nome>Ana</Nome>
+        <Sobrenome>Pereira</Sobrenome>
+        <Cpf>478.963.125-99</Cpf>
+        <Cep>11040-330</Cep>
+        <Logradouro>Avenida Conselheiro Nébias</Logradouro>
+        <Numero>300</Numero>
+        <Bairro>Boqueirão</Bairro>
+        <Cidade>Santos</Cidade>
+        <Complemento>Apto 101</Complemento>
+        <Email>ana.pereira@example.com</Email>
+        <Telefone>(13) 3232-6543</Telefone>
+    </Hospede>
+    <Hospede>
+        <Id>6</Id>
+        <Nome>Pedro</Nome>
+        <Sobrenome>Almeida</Sobrenome>
+        <Cpf>987.654.321-00</Cpf>
+        <Cep>80030-030</Cep>
+        <Logradouro>Rua XV de Novembro</Logradouro>
+        <Numero>678</Numero>
+        <Bairro>Centro</Bairro>
+        <Cidade>Curitiba</Cidade>
+        <Complemento>Apto 502</Complemento>
+        <Email>pedro.almeida@example.com</Email>
+        <Telefone>(41) 99987-6543</Telefone>
+    </Hospede>
+    <Hospede>
+        <Id>7</Id>
+        <Nome>Carla</Nome>
+        <Sobrenome>Ferreira</Sobrenome>
+        <Cpf>124.578.963-00</Cpf>
+        <Cep>40110-150</Cep>
+        <Logradouro>Avenida Oceânica</Logradouro>
+        <Numero>150</Numero>
+        <Bairro>Barra</Bairro>
+        <Cidade>Salvador</Cidade>
+        <Complemento>Apto 702</Complemento>
+        <Email>carla.ferreira@example.com</Email>
+        <Telefone>(71) 98765-4321</Telefone>
+    </Hospede>
+    <Hospede>
+        <Id>8</Id>
+        <Nome>Rodrigo</Nome>
+        <Sobrenome>Lima</Sobrenome>
+        <Cpf>698.745.321-11</Cpf>
+        <Cep>69057-002</Cep>
+        <Logradouro>Avenida Djalma Batista</Logradouro>
+        <Numero>1000</Numero>
+        <Bairro>Flores</Bairro>
+        <Cidade>Manaus</Cidade>
+        <Complemento>Apto 303</Complemento>
+        <Email>rodrigo.lima@example.com</Email>
+        <Telefone>(92) 91234-5678</Telefone>
+    </Hospede>
+    <Hospede>
+        <Id>9</Id>
+        <Nome>Fernanda</Nome>
+        <Sobrenome>Gomes</Sobrenome>
+        <Cpf>345.678.901-22</Cpf>
+        <Cep>70040-010</Cep>
+        <Logradouro>Eixo Monumental</Logradouro>
+        <Numero>101</Numero>
+        <Bairro>Asa Sul</Bairro>
+        <Cidade>Brasília</Cidade>
+        <Complemento>Apto 105</Complemento>
+        <Email>fernanda.gomes@example.com</Email>
+        <Telefone>(61) 99876-5432</Telefone>
+    </Hospede>
+    <Hospede>
+        <Id>10</Id>
+        <Nome>Gabriel</Nome>
+        <Sobrenome>Mendes</Sobrenome>
+        <Cpf>912.345.678-99</Cpf>
+        <Cep>30180-012</Cep>
+        <Logradouro>Avenida Amazonas</Logradouro>
+        <Numero>450</Numero>
+        <Bairro>Centro</Bairro>
+        <Cidade>Belo Horizonte</Cidade>
+        <Complemento>Apto 204</Complemento>
+        <Email>gabriel.mendes@example.com</Email>
+        <Telefone>(31) 99988-7766</Telefone>
+    </Hospede>
+    <Hospede>
+        <Id>11</Id>
+        <Nome>Aline</Nome>
+        <Sobrenome>Rocha</Sobrenome>
+        <Cpf>657.890.123-45</Cpf>
+        <Cep>01020-000</Cep>
+        <Logradouro>Rua Direita</Logradouro>
+        <Numero>200</Numero>
+        <Bairro>Centro</Bairro>
+        <Cidade>São Paulo</Cidade>
+        <Complemento>Apto 308</Complemento>
+        <Email>aline.rocha@example.com</Email>
+        <Telefone>(11) 98765-1234</Telefone>
+    </Hospede>
 </Hotel>

@@ -1,3 +1,147 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Hotel>
+    <Quarto>
+        <NumeroQuarto>101</NumeroQuarto>
+        <Tipo>Quartzo</Tipo>
+        <UrlFoto>http://hotelresidencialitapema.com.br/wp-content/uploads/2019/01/IMG_3893.jpg</UrlFoto>
+        <Descricao>Quarto Quartzo: Luxuoso e contemporâneo, este espaço oferece conforto excepcional com vistas deslumbrantes da cidade.</Descricao>
+        <CamasSolteiro>2</CamasSolteiro>
+        <CamasCasal>1</CamasCasal>
+        <Frigobar>false</Frigobar>
+        <ArCondicionado>true</ArCondicionado>
+        <Valor>100</Valor>
+        <Disponivel>true</Disponivel>
+    </Quarto>
+    <Quarto>
+        <NumeroQuarto>102</NumeroQuarto>
+        <Tipo>Onix</Tipo>
+        <UrlFoto>http://hotelresidencialitapema.com.br/wp-content/uploads/2019/01/IMG_3923.jpg</UrlFoto>
+        <Descricao>Quarto Ônix: Sofisticação e elegância se encontram neste ambiente modoques de luxo e conforto.</Descricao>
+        <CamasSolteiro>3</CamasSolteiro>
+        <CamasCasal>2</CamasCasal>
+        <Frigobar>false</Frigobar>
+        <ArCondicionado>true</ArCondicionado>
+        <Valor>170</Valor>
+        <Disponivel>true</Disponivel>
+    </Quarto>
+    <Quarto>
+        <NumeroQuarto>103</NumeroQuarto>
+        <Tipo>Obsidiana</Tipo>
+        <UrlFoto>http://hotelresidencialitapema.com.br/wp-content/uploads/2019/01/IMG_3931.jpg</UrlFoto>
+        <Descricao>Quarto Obsidiana: Um refúgio de tranquilidade e estilo contemporâneo, onde o design minimalista encontra o conforto de amenities exclusivos.</Descricao>
+        <CamasSolteiro>2</CamasSolteiro>
+        <CamasCasal>2</CamasCasal>
+        <Frigobar>true</Frigobar>
+        <ArCondicionado>true</ArCondicionado>
+        <Valor>220</Valor>
+        <Disponivel>true</Disponivel>
+    </Quarto>
+    <Quarto>
+        <NumeroQuarto>104</NumeroQuarto>
+        <Tipo>Ogata</Tipo>
+        <UrlFoto>http://hotelresidencialitapema.com.br/wp-content/uploads/2019/01/IMG_3942.jpg</UrlFoto>
+        <Descricao>Quarto Ogata: Uma fusão de cultura e conforto, com decoração inspirada em elementos tradicionais e comodidades modernas para uma experiência única.</Descricao>
+        <CamasSolteiro>2</CamasSolteiro>
+        <CamasCasal>1</CamasCasal>
+        <Frigobar>true</Frigobar>
+        <ArCondicionado>true</ArCondicionado>
+        <Valor>150</Valor>
+        <Disponivel>true</Disponivel>
+    </Quarto>
+    <Quarto>
+        <NumeroQuarto>105</NumeroQuarto>
+        <Tipo>Diamante</Tipo>
+        <UrlFoto>http://hotelresidencialitapema.com.br/wp-content/uploads/2019/01/IMG_3950.jpg</UrlFoto>
+        <Descricao>Quarto Diamante: Um espaço luxuoso e refinado, com vistas panorâmicas e amenities exclusivos para uma estadia inesquecível.</Descricao>
+        <CamasSolteiro>3</CamasSolteiro>
+        <CamasCasal>1</CamasCasal>
+        <Frigobar>true</Frigobar>
+        <ArCondicionado>true</ArCondicionado>
+        <Valor>250</Valor>
+        <Disponivel>true</Disponivel>
+    </Quarto>
+    <Quarto>
+        <NumeroQuarto>106</NumeroQuarto>
+        <Tipo>Esmeralda</Tipo>
+        <UrlFoto>http://hotelresidencialitapema.com.br/wp-content/uploads/2019/01/IMG_3961.jpg</UrlFoto>
+        <Descricao>Quarto Esmeralda: Conforto e elegância se encontram neste espaço exclusivo, com design contemporâneo e amenities de alto padrão.</Descricao>
+        <CamasSolteiro>2</CamasSolteiro>
+        <CamasCasal>2</CamasCasal>
+        <Frigobar>true</Frigobar>
+        <ArCondicionado>true</ArCondicionado>
+        <Valor>200</Valor>
+        <Disponivel>true</Disponivel>
+    </Quarto>
+    <Quarto>
+        <NumeroQuarto>107</NumeroQuarto>
+        <Tipo>Rubi</Tipo>
+        <UrlFoto>http://hotelresidencialitapema.com.br/wp-content/uploads/2019/01/IMG_3972.jpg</UrlFoto>
+        <Descricao>Quarto Rubi: Um ambiente sofisticado com toques de modernidade, ideal para uma estadia relaxante e confortável.</Descricao>
+        <CamasSolteiro>1</CamasSolteiro>
+        <CamasCasal>1</CamasCasal>
+        <Frigobar>false</Frigobar>
+        <ArCondicionado>true</ArCondicionado>
+        <Valor>120</Valor>
+        <Disponivel>true</Disponivel>
+    </Quarto>
+    <Quarto>
+        <NumeroQuarto>108</NumeroQuarto>
+        <Tipo>Safira</Tipo>
+        <UrlFoto>http://hotelresidencialitapema.com.br/wp-content/uploads/2019/01/IMG_3980.jpg</UrlFoto>
+        <Descricao>Quarto Safira: Um espaço elegante e contemporâneo, com vistas deslumbrantes e amenidades que garantem conforto e estilo.</Descricao>
+        <CamasSolteiro>2</CamasSolteiro>
+        <CamasCasal>1</CamasCasal>
+        <Frigobar>true</Frigobar>
+        <ArCondicionado>true</ArCondicionado>
+        <Valor>180</Valor>
+        <Disponivel>true</Disponivel>
+    </Quarto>
+    <Quarto>
+        <NumeroQuarto>109</NumeroQuarto>
+        <Tipo>Cristal</Tipo>
+        <UrlFoto>http://hotelresidencialitapema.com.br/wp-content/uploads/2019/01/IMG_3992.jpg</UrlFoto>
+        <Descricao>Quarto Cristal: Um ambiente sereno e luxuoso, com design moderno e amenities que proporcionam uma estadia relaxante.</Descricao>
+        <CamasSolteiro>1</CamasSolteiro>
+        <CamasCasal>1</CamasCasal>
+        <Frigobar>true</Frigobar>
+        <ArCondicionado>true</ArCondicionado>
+        <Valor>160</Valor>
+        <Disponivel>true</Disponivel>
+    </Quarto>
+    <Quarto>
+        <NumeroQuarto>110</NumeroQuarto>
+        <Tipo>Topázio</Tipo>
+        <UrlFoto>http://hotelresidencialitapema.com.br/wp-content/uploads/2019/01/IMG_4002.jpg</UrlFoto>
+        <Descricao>Quarto Topázio: Um espaço luxuoso e acolhedor, com vistas deslumbrantes e amenidades exclusivas para uma experiência única.</Descricao>
+        <CamasSolteiro>2</CamasSolteiro>
+        <CamasCasal>2</CamasCasal>
+        <Frigobar>true</Frigobar>
+        <ArCondicionado>true</ArCondicionado>
+        <Valor>230</Valor>
+        <Disponivel>true</Disponivel>
+    </Quarto>
+    <Quarto>
+        <NumeroQuarto>111</NumeroQuarto>
+        <Tipo>Pérola</Tipo>
+        <UrlFoto>http://hotelresidencialitapema.com.br/wp-content/uploads/2019/01/IMG_4013.jpg</UrlFoto>
+        <Descricao>Quarto Pérola: Um ambiente requintado com toques de elegância, ideal para uma estadia relaxante com vistas panorâmicas.</Descricao>
+        <CamasSolteiro>1</CamasSolteiro>
+        <CamasCasal>1</CamasCasal>
+        <Frigobar>false</Frigobar>
+        <ArCondicionado>true</ArCondicionado>
+        <Valor>140</Valor>
+        <Disponivel>true</Disponivel>
+    </Quarto>
+    <Quarto>
+        <NumeroQuarto>112</NumeroQuarto>
+        <Tipo>Jade</Tipo>
+        <UrlFoto>http://hotelresidencialitapema.com.br/wp-content/uploads/2019/01/IMG_4023.jpg</UrlFoto>
+        <Descricao>Quarto Jade: Um espaço harmonioso e contemporâneo, com design único e amenities que garantem conforto e tranquilidade.</Descricao>
+        <CamasSolteiro>2</CamasSolteiro>
+        <CamasCasal>1</CamasCasal>
+        <Frigobar>true</Frigobar>
+        <ArCondicionado>true</ArCondicionado>
+        <Valor>190</Valor>
+        <Disponivel>true</Disponivel>
+    </Quarto>
 </Hotel>

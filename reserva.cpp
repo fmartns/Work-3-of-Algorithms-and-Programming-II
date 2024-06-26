@@ -7,12 +7,13 @@
 #include <vector>
 #include <ctime>
 #include <iomanip>
+#include <limits>
 
 using namespace tinyxml2;
 using namespace std;
 
 // Encontra o próximo Id disponível para atribuir a reserva
-int proximoIDDisponivelReserva(const string& enderecoArquivo, const string& tagID) {
+int proximoIDDisponivelReserva(string enderecoArquivo, string tagID) {
 
     // Carrega o arquivo XML
     XMLDocument arquivo;
@@ -78,13 +79,9 @@ time_t tratarData(int dia, int mes, int ano){
 }
 
 // Busca um quarto pelo número
-Quarto* buscarQuartoPorNumero(int idQuarto) {
-
-    // Recupera os quartos registrados
-    vector<Quarto> quartosRegistrados = recuperarQuartos("./quartos.xml");
-
+Quarto* buscarQuartoPorNumero(int idQuarto, vector<Quarto>& quartos) {
     // Busca o quarto pelo número
-    for (auto& quarto : quartosRegistrados) {
+    for (auto& quarto : quartos) {
         if (quarto.numeroQuarto == idQuarto) {
             return &quarto;
         }
@@ -95,19 +92,15 @@ Quarto* buscarQuartoPorNumero(int idQuarto) {
 }
 
 // Busca um hospede pelo ID
-Hospede* buscarHospedePorId(int idHospede) {
+Hospede* buscarHospedePorId(int idHospede, vector<Hospede>& hospedes) {
 
-    // Recupera os hospedes registrados
-    vector<Hospede> hospedesRegistrados = recuperarHospedes("./hospedes.xml");
-
-    // Busca o hospede pelo ID
-    for (auto& hospede : hospedesRegistrados) {
+    for (auto& hospede : hospedes) {
         if (hospede.id == idHospede) {
             return &hospede;
         }
     }
 
-    // Retorna nullptr caso não encontre o hospede
+    // Retorna nullptr caso não encontre o quarto
     return nullptr;
 }
 
@@ -145,6 +138,8 @@ vector<Reserva> recuperarReservas(string enderecoArquivo) {
         Hospede hospede;
         time_t dataEntrada = 0;
         time_t dataSaida = 0;
+        time_t dataCheckin = 0;
+        time_t dataCheckout = 0;
         int numHospedes = 0;
         double valorTotal = 0.0;
         bool pago = false;
@@ -196,6 +191,22 @@ vector<Reserva> recuperarReservas(string enderecoArquivo) {
                 cout << "Erro ao converter DataSaida: " << elementoDataSaida->GetText() << endl;
             }
         }
+        
+        XMLElement* elementoDataCheckin = reservaXML->FirstChildElement("DataCheckin");
+        if (elementoDataCheckin) {
+            dataCheckin = stringToTime(elementoDataCheckin->GetText());
+            if (dataCheckin == 0) {
+                cout << "Erro ao converter Data Checkin: " << elementoDataCheckin->GetText() << endl;
+            }
+        }
+        
+        XMLElement* elementoDataCheckout = reservaXML->FirstChildElement("DataCheckout");
+        if (elementoDataCheckout) {
+            dataCheckout = stringToTime(elementoDataCheckout->GetText());
+            if (dataCheckout == 0) {
+                cout << "Erro ao converter Data Checkout: " << elementoDataCheckout->GetText() << endl;
+            }
+        }
 
         XMLElement* elementoNumHospedes = reservaXML->FirstChildElement("NumHospedes");
         if (elementoNumHospedes) {
@@ -213,11 +224,74 @@ vector<Reserva> recuperarReservas(string enderecoArquivo) {
             pago = (text && strcmp(text, "true") == 0);
         }
 
-        Reserva reserva = {id, quarto, hospede, dataEntrada, dataSaida, numHospedes, valorTotal, pago};
+        Reserva reserva = {id, quarto, hospede, dataEntrada, dataSaida, dataCheckin, dataCheckout, numHospedes, valorTotal, pago};
         reservas.push_back(reserva);
     }
 
     return reservas;
+}
+
+// Registra uma nova reserva
+Reserva novaReserva() {
+    Reserva reserva;
+
+    int numeroQuarto;
+    cout << "Digite o número do quarto: ";
+    cin >> numeroQuarto;
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    vector<Quarto> quartos = recuperarQuartos("./quartos.xml");
+    Quarto* quarto = buscarQuartoPorNumero(numeroQuarto, quartos);
+    while (!quarto) {
+        cout << "Quarto não encontrado! Digite o número do quarto: ";
+        cin >> numeroQuarto;
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        quarto = buscarQuartoPorNumero(numeroQuarto, quartos);
+    }
+    reserva.quarto = *quarto;
+
+    int idHospede;
+    cout << "Digite o id do hospede: ";
+    cin >> idHospede;
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    vector<Hospede> hospedes = recuperarHospedes("./hospedes.xml");
+    Hospede* hospede = buscarHospedePorId(idHospede, hospedes);
+    while (!hospede) {
+        cout << "Hospede não encontrado! Digite o id do hospede: ";
+        cin >> idHospede;
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        hospede = buscarHospedePorId(idHospede, hospedes);
+    }
+    reserva.hospede = *hospede;
+
+    // Coleta da data de entrada
+    int dia, mes, ano;
+    cout << "Digite a data de entrada (DD MM AAAA): ";
+    cin >> dia >> mes >> ano;
+    // Limpa o buffer de entrada
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    reserva.dataEntrada = tratarData(dia, mes, ano);
+
+    // Coleta da data de saída
+    cout << "Digite a data de saída (DD MM AAAA): ";
+    cin >> dia >> mes >> ano;
+    // Limpa o buffer de entrada
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    reserva.dataSaida = tratarData(dia, mes, ano);
+
+    // Coleta do número de hóspedes
+    cout << "Digite o número de hóspedes: ";
+    cin >> reserva.numHospedes;
+    // Limpa o buffer de entrada
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+    // Inicializa outros campos da reserva
+    reserva.id = proximoIDDisponivelReserva("./reservas.xml", "Id");
+    reserva.dataCheckin = 0; // Pode ser inicializado conforme necessário
+    reserva.dataCheckout = 0; // Pode ser inicializado conforme necessário
+    reserva.valorTotal = 0.0; // Pode ser inicializado conforme necessário
+    reserva.pago = false;
+
+    return reserva;
 }
 
 // Imprime as informações de uma reserva
@@ -225,29 +299,29 @@ void imprimirReserva(Reserva reserva) {
 
     cout << "ID: " << reserva.id << endl;
     cout << "Num Quarto: " << reserva.quarto.numeroQuarto << endl;
-    if (!reserva.hospede.nome.empty() && !reserva.hospede.sobrenome.empty()) {
-        cout << "Hospede: " << reserva.hospede.nome << " " << reserva.hospede.sobrenome << endl;
+    cout << "Hospede: " << reserva.hospede.nome << " " << reserva.hospede.sobrenome << endl;
+    cout << "Data de Entrada: " << timeToString(reserva.dataEntrada) << endl;
+    cout << "Data de Saida: " << timeToString(reserva.dataSaida) << endl;
+    if (reserva.dataCheckin != 0) {
+        cout << "Data de Check-in: " << timeToString(reserva.dataCheckin) << endl;
     } else {
-        cout << "Hospede: Dados do hóspede não disponíveis" << endl;
+        cout << "Data de Check-in: Não disponível" << endl;
     }
-    if (reserva.dataEntrada != 0) {
-        cout << "Data de Entrada: " << timeToString(reserva.dataEntrada) << endl;
+    if (reserva.dataCheckout != 0) {
+        cout << "Data de Check-out: " << timeToString(reserva.dataCheckout) << endl;
+        cout << "Pago: " << (reserva.pago ? "Sim" : "Não") << endl;
+        cout << "Valor Total: R$ " << fixed << setprecision(2) << reserva.valorTotal << endl;
     } else {
-        cout << "Data de Entrada: Não disponível" << endl;
+        cout << "Data de Check-out: Não disponível" << endl;
+        cout << "Pago: Não dsiponivel" << endl;
+        cout << "Valor Total: Não disponivel" << endl;
     }
-    cout << "Numero de Hospedes: " << reserva.numHospedes << endl;
-    if (reserva.dataSaida != 0) {
-        cout << "Data de Saida: " << timeToString(reserva.dataSaida) << endl;
-    } else {
-        cout << "Data de Saida: Não disponível" << endl;
-    }
-    cout << "Pago: " << (reserva.pago ? "Sim" : "Não") << endl;
-    cout << "Valor Total: R$ " << fixed << setprecision(2) << reserva.valorTotal << endl;
+
 
 }
 
-// Faz o checkin de uma reserva
-void checkin(string enderecoArquivo, Reserva reserva) {
+// Registra uma nova reserva
+void fazerReserva(string enderecoArquivo, Reserva reserva) {
 
     // Carrega o arquivo XML
     tinyxml2::XMLDocument arquivo;
@@ -301,6 +375,11 @@ void checkin(string enderecoArquivo, Reserva reserva) {
     tinyxml2::XMLElement* dataEntrada = arquivo.NewElement("DataEntrada");
     dataEntrada->SetText(dataEntradaStr.c_str());
     elementoReserva->InsertEndChild(dataEntrada);
+    
+    string dataSaidaStr = timeToString(reserva.dataSaida);
+    tinyxml2::XMLElement* dataSaida = arquivo.NewElement("DataSaida");
+    dataSaida->SetText(dataSaidaStr.c_str());
+    elementoReserva->InsertEndChild(dataSaida);
 
     tinyxml2::XMLElement* numHospedes = arquivo.NewElement("NumHospedes");
     numHospedes->SetText(reserva.numHospedes);
@@ -321,6 +400,56 @@ void checkin(string enderecoArquivo, Reserva reserva) {
     retorno = arquivo.SaveFile(enderecoArquivo.c_str());
     if (retorno != tinyxml2::XML_SUCCESS) {
         cout << "Erro! Não foi possivel carregar o arquivo." << endl;
+    }
+}
+
+// Faz o checkin de uma reserva
+void checkin(string enderecoArquivo, int idReserva) {
+
+    // Carrega o arquivo XML
+    tinyxml2::XMLDocument arquivo;
+    XMLError retorno = arquivo.LoadFile(enderecoArquivo.c_str());
+    if (retorno != XML_SUCCESS) {
+        cout << "Erro! Não foi possível carregar o arquivo." << endl;
+        return;
+    }
+
+    // Define a raiz do arquivo XML
+    XMLElement* raiz = arquivo.RootElement();
+
+    // Busca a reserva pelo ID
+    XMLElement* elementoReserva = raiz->FirstChildElement("Reserva");
+    while (elementoReserva) {
+        XMLElement* idElement = elementoReserva->FirstChildElement("Id");
+        if (idElement && atoi(idElement->GetText()) == idReserva) {
+            break;
+        }
+        elementoReserva = elementoReserva->NextSiblingElement("Reserva");
+    }
+
+    if (!elementoReserva) {
+        cout << "Reserva não encontrada." << endl;
+        return;
+    }
+
+    int dia, mes, ano;
+    cout << "Digite a data de check-in (DD MM AAAA): ";
+    cin >> dia >> mes >> ano;
+    time_t dataCheckin = tratarData(dia, mes, ano);
+    string dataCheckinStr = timeToString(dataCheckin);
+
+    XMLElement* dataCheckinElement = elementoReserva->FirstChildElement("DataCheckin");
+    if (!dataCheckinElement) {
+        dataCheckinElement = arquivo.NewElement("DataCheckin");
+        elementoReserva->InsertEndChild(dataCheckinElement);
+    }
+    dataCheckinElement->SetText(dataCheckinStr.c_str());
+
+    retorno = arquivo.SaveFile(enderecoArquivo.c_str());
+    if (retorno != XML_SUCCESS) {
+        cout << "Erro! Não foi possível salvar o arquivo." << endl;
+    } else {
+        cout << "Check-in realizado com sucesso!" << endl;
     }
 }
 
@@ -354,29 +483,29 @@ void checkout(string enderecoArquivo, int idReserva) {
     }
 
     int dia, mes, ano;
-    cout << "Digite a data de saída (DD MM AAAA): ";
+    cout << "Digite a data de check-out (DD MM AAAA): ";
     cin >> dia >> mes >> ano;
-    time_t dataSaida = tratarData(dia, mes, ano);
-    string dataSaidaStr = timeToString(dataSaida);
+    time_t dataCheckout = tratarData(dia, mes, ano);
+    string dataCheckoutStr = timeToString(dataCheckout);
 
-    XMLElement* dataSaidaElement = elementoReserva->FirstChildElement("DataSaida");
-    if (!dataSaidaElement) {
-        dataSaidaElement = arquivo.NewElement("DataSaida");
-        elementoReserva->InsertEndChild(dataSaidaElement);
+    XMLElement* dataCheckoutElement = elementoReserva->FirstChildElement("DataCheckout");
+    if (!dataCheckoutElement) {
+        dataCheckoutElement = arquivo.NewElement("DataCheckout");
+        elementoReserva->InsertEndChild(dataCheckoutElement);
     }
-    dataSaidaElement->SetText(dataSaidaStr.c_str());
+    dataCheckoutElement->SetText(dataCheckoutStr.c_str());
 
-    XMLElement* dataEntradaElement = elementoReserva->FirstChildElement("DataEntrada");
-    if (!dataEntradaElement) {
-        cout << "Data de entrada não encontrada." << endl;
+    XMLElement* dataCheckinElement = elementoReserva->FirstChildElement("DataCheckin");
+    if (!dataCheckinElement) {
+        cout << "Data de check-in não encontrada." << endl;
         return;
     }
 
-    tm dataEntradaTm = {0};
-    strptime(dataEntradaElement->GetText(), "%d/%m/%Y", &dataEntradaTm);
-    time_t dataEntrada = mktime(&dataEntradaTm);
+    tm dataCheckinTm = {0};
+    strptime(dataCheckinElement->GetText(), "%d/%m/%Y", &dataCheckinTm);
+    time_t dataCheckin = mktime(&dataCheckinTm);
 
-    int diasEstadia = calcularDiferencaDias(dataEntrada, dataSaida);
+    int diasEstadia = calcularDiferencaDias(dataCheckin, dataCheckout);
 
     XMLElement* quartoElement = elementoReserva->FirstChildElement("Quarto");
     if (!quartoElement) {
@@ -415,49 +544,44 @@ void checkout(string enderecoArquivo, int idReserva) {
     cout << "Valor total da reserva: R$ " << valorTotalStream.str() << endl;
 }
 
-// Registra uma nova reserva
-Reserva novaReserva() {
+// Verifica se dois períodos de tempo se cruzam ou se coincidem em algum ponto
+bool dataCruzam(time_t start1, time_t end1, time_t start2, time_t end2) {
+    return (start1 < end2 && start2 < end1);
+}
 
-    // Encontra o próximo ID disponível para a reserva
-    int id = proximoIDDisponivelReserva("./reservas.xml", "Id");
-    
-    int numeroQuarto;
-    cout << "Digite o número do quarto: ";
-    cin >> numeroQuarto;
-    Quarto* quarto = buscarQuartoPorNumero(numeroQuarto);
-    while (!quarto) {
-        cout << "Quarto não encontrado! Digite o número do quarto: ";
-        cin >> numeroQuarto;
-        quarto = buscarQuartoPorNumero(numeroQuarto); // Removido a declaração 'Quarto*'
+// Verifica se o quarto estará disponivel na data
+bool quartoDisponivel(Quarto quarto, time_t dataEntrada, time_t dataSaida, vector<Reserva> reservas) {
+    for (const Reserva& reserva : reservas) {
+        if (reserva.quarto.numeroQuarto == quarto.numeroQuarto &&
+            dataCruzam(dataEntrada, dataSaida, reserva.dataEntrada, reserva.dataSaida)) {
+            return false;
+        }
+    }
+    return true;
+}
+
+Quarto acharQuartoIdeal(int numHospedes, time_t dataEntrada, time_t dataSaida, string quartosFile, string reservasFile) {
+    vector<Quarto> quartos = recuperarQuartos(quartosFile);
+    vector<Reserva> reservas = recuperarReservas(reservasFile);
+
+    Quarto quartoIdeal;
+    bool found = false;
+
+    for (const Quarto& quarto : quartos) {
+        if (quartoDisponivel(quarto, dataEntrada, dataSaida, reservas)) {
+            int capacidade = quarto.camasSolteiro + (quarto.camasCasal * 2);
+            if (capacidade >= numHospedes) {
+                if (!found || quarto.valor < quartoIdeal.valor) {
+                    quartoIdeal = quarto;
+                    found = true;
+                }
+            }
+        }
     }
 
-    int idHospede;
-    cout << "Digite o ID do hóspede: ";
-    cin >> idHospede;
-    Hospede* hospede = buscarHospedePorId(idHospede);
-    while (!hospede) {
-        cout << "Hóspede não encontrado! Digite o ID do hóspede: ";
-        cin >> idHospede;
-        hospede = buscarHospedePorId(idHospede);
+    if (found) {
+        return quartoIdeal;
+    } else {
+        throw runtime_error("Nenhum quarto disponível encontrado que atenda aos critérios.");
     }
-    int dia, mes, ano;
-    time_t dataEntrada;
-    cout << "Digite a data de entrada prevista (DD MM AAAA): ";
-    cin >> dia >> mes >> ano;
-    dataEntrada = tratarData(dia, mes, ano);
-
-    time_t dataSaida;
-
-    int numHospedes;
-    cout << "Digite o número de hóspedes: ";
-    cin >> numHospedes;
-
-    int diasEstadia = calcularDiferencaDias(dataEntrada, dataSaida);
-
-    double valorDiaria = quarto->valor;
-    double valorTotal = (diasEstadia+1) * valorDiaria;
-
-    Reserva reserva = {id, *quarto, *hospede, dataEntrada, dataSaida, numHospedes, valorTotal, false};
-
-    return reserva;
 }
