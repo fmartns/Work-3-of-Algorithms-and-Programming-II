@@ -49,13 +49,10 @@ void fazerReserva(string enderecoArquivo, Reserva reserva);
 void checkin(string enderecoArquivo, int idReserva);
 // Faz o checkout de uma reserva
 void checkout(string enderecoArquivo, int idReserva);
-
 // Verifica se dois períodos de tempo se cruzam ou se coincidem em algum ponto
 bool dataCruzam(time_t start1, time_t end1, time_t start2, time_t end2);
-
 // Verifica se o quarto estará disponivel na data
 bool quartoDisponivel(Quarto quarto, time_t dataEntrada, time_t dataSaida, vector<Reserva> reservas);
-
 // Encontra o quarto ideal de acordo com o numero de hospedes e data
 Quarto acharQuartoIdeal(int numHospedes, time_t dataEntrada, time_t dataSaida, string quartosFile, string reservasFile);
 

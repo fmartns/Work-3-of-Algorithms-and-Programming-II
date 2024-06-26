@@ -560,6 +560,7 @@ bool quartoDisponivel(Quarto quarto, time_t dataEntrada, time_t dataSaida, vecto
     return true;
 }
 
+// Encontra o quarto ideal de acordo com o numero de hospedes e data
 Quarto acharQuartoIdeal(int numHospedes, time_t dataEntrada, time_t dataSaida, string quartosFile, string reservasFile) {
     vector<Quarto> quartos = recuperarQuartos(quartosFile);
     vector<Reserva> reservas = recuperarReservas(reservasFile);
